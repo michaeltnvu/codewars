@@ -58,8 +58,6 @@ function parseInt(string) {
   let result = 0;
   let currentNumber = 0;
 
-  console.log("wordsArray", wordsArray);
-
   wordsArray.forEach((word) => {
     const value = numberWords[word];
     if (value === 100) {
@@ -77,7 +75,3 @@ function parseInt(string) {
 
   return result;
 }
-
-console.log(
-  parseInt("seven hundred eighty-three thousand nine hundred and nineteen")
-);

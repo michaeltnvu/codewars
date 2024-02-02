@@ -16,7 +16,7 @@
 // All tested numbers are valid, you don't need to validate them
 
 function parseInt(string) {
-  const wordsToNumbers = {
+  const numberWords = {
     zero: 0,
     one: 1,
     two: 2,
@@ -50,31 +50,34 @@ function parseInt(string) {
     million: 1000000,
   };
 
-  const wordsArray = words
-    .toLowerCase()
-    .replace(/and/g, "") // Remove 'and' (optional) for simplicity
-    .match(/\b\w+\b/g);
+  const wordsArray = string
+    .replace(/\band\b/g, "") // Remove 'and' if present
+    .replace(/[-,]/g, " ") // Replace hyphens and commas with space
+    .split(/\s+/);
 
   let result = 0;
   let currentNumber = 0;
 
-  for (const word of wordsArray) {
-    const value = wordToNumberMap[word];
+  console.log("wordsArray", wordsArray);
 
-    if (value !== undefined) {
-      if (value === 100) {
-        currentNumber *= value;
-      } else if (value === 1000 || value === 1000000) {
-        result += currentNumber * value;
-        currentNumber = 0;
-      } else {
-        currentNumber += value;
-      }
+  wordsArray.forEach((word) => {
+    const value = numberWords[word];
+    if (value === 100) {
+      currentNumber *= value;
+    } else if (value === 1000 || value === 1000000) {
+      result += currentNumber;
+      currentNumber = 0;
+      result *= value;
+    } else {
+      currentNumber += value;
     }
-  }
+  });
 
-  // Add the remaining currentNumber to the result
   result += currentNumber;
 
   return result;
 }
+
+console.log(
+  parseInt("seven hundred eighty-three thousand nine hundred and nineteen")
+);

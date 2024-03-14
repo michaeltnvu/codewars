@@ -7,8 +7,7 @@
 // You can assume, for the purpose of this kata, that the supplied array will not be empty.
 
 const findSmallestInt = (args: number[]): number => {
-  args = args.sort((a, b) => a - b);
-  return args[0];
+  return Math.min(...args);
 };
 
 console.log(findSmallestInt([34, 15, 88, 2]));

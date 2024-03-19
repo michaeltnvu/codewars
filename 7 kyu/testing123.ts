@@ -16,3 +16,9 @@ function number(array: string[]): string[] {
   }
   return output;
 }
+
+// OR
+
+function num(array: string[]): string[] {
+  return array.map((el, i) => `${i + 1}: ${el}`);
+}
